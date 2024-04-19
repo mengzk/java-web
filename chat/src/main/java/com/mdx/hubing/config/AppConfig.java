@@ -13,8 +13,8 @@ public class AppConfig {
     public final static String OSS_BUCKET = "appstore"; // oss仓库根目录名称
 
     // 微信 配置
-    public final static String WX_APPID = "wx601c97e2ab367f70";
-    public final static String WX_SECRET = "0c3a2720ab2a1275d194763fd89ad56b";
+    public final static String WX_APPID = "12312312313";
+    public final static String WX_SECRET = "1232123123";
 
     // WebSocket 配置
     public final static String WS_PATH = "link";
