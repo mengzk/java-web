@@ -19,11 +19,14 @@ public abstract class OkCallback<T> implements Callback {
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
         if (response.isSuccessful()) {
-            String data = response.body().string();
+            String data = null;
+            if (response.body() != null) {
+                data = response.body().string();
+            }
 //            System.out.printf("%S---> %s%n", TAG, data);
             if (data != null) {
                 Gson gson = new Gson();
-                ResultData<T> result = gson.fromJson(data, ResultData.class);
+                ResultData result = gson.fromJson(data, ResultData.class);
                 onResult(result);
             } else {
                 onFail(-1, response.message());
