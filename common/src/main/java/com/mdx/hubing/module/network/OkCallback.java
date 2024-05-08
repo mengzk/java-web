@@ -14,7 +14,7 @@ import java.io.IOException;
  * Desc:
  */
 public abstract class OkCallback<T> implements Callback {
-    private String TAG = "OkCallback";
+    private final String TAG = "OkCallback";
 
     @Override
     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {

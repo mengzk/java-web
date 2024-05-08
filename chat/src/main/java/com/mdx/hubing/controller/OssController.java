@@ -15,34 +15,34 @@ import org.springframework.web.multipart.MultipartFile;
  * Desc: 文件操作
  */
 @RestController
-@RequestMapping("file")
+@RequestMapping("/file")
 public class OssController {
     @Autowired
     OssService ossService;
 
     // 上传文件
-    @RequestMapping("/upload")
+    @RequestMapping("upload")
     public ResultBody fileUpload(@RequestParam(value = "env",required = false) String env, @RequestParam("file") MultipartFile file) {
         return ResultBody.success(ossService.fileUpload(file, env));
     }
 
     // 删除文件
-    @RequestMapping("/delete")
+    @RequestMapping("delete")
     ResultBody deleteFile(@RequestParam("path") String path) throws CustomException {
         int code = ossService.deleteFile(path);
         return code == 0 ? ResultBody.success("成功") : ResultBody.fail(code, "失败！");
     }
 
     // 复制文件
-    @RequestMapping("/copy")
+    @RequestMapping("copy")
     ResultBody copyFile(@RequestParam("path") String path) throws CustomException {
         int code = ossService.copyFile(path);
         return code == 0 ? ResultBody.success("成功") : ResultBody.fail(code, "失败！");
     }
 
     // 下载
-    @RequestMapping("/download")
-    public ResultBody fileDownload(@RequestParam("name") String fileName) {
+    @RequestMapping("download")
+    public ResultBody fileDownload() {
 
         return ResultBody.fail(-3, "下载失败！");
     }

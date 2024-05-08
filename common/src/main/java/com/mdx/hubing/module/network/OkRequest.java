@@ -28,6 +28,8 @@ public class OkRequest {
             String json = options.params != null ? new Gson().toJson(options.params) : "";
             RequestBody body = RequestBody.create(json, OkClient.MEDIA_JSON);
             builder.post(body);
+        } else if (options.method.equalsIgnoreCase("get")) {
+            // 拼接参数
         }
 
         // 请求头
