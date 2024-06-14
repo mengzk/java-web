@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 2023-11-10
  * Desc:
  * https://square.github.io/okhttp/recipes/
+ * https://github.com/square/okhttp/tree/master/samples/guide/src/main/java/okhttp3/recipes
  */
 public class OkClient {
     public static MediaType MEDIA_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");

@@ -7,10 +7,11 @@ import java.util.Map;
  * Date: 2023-09-12
  * Desc:
  */
-public class RequestOption<T> {
+//public class RequestOption<T> {
+public class RequestOption {
     public String url;
     public String method;
-    public T params;
+    public Object params;
     public Map<String, String> headers;
 
     public RequestOption(String url) {
@@ -21,11 +22,11 @@ public class RequestOption<T> {
         this(url, method, null);
     }
 
-    public RequestOption(String url, String method, T params) {
+    public RequestOption(String url, String method, Object params) {
         this(url, "get", params, null);
     }
 
-    public RequestOption(String url, String method, T params, Map<String, String> headers) {
+    public RequestOption(String url, String method, Object params, Map<String, String> headers) {
         this.url = url;
         this.method = method;
         this.params = params;

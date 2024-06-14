@@ -46,7 +46,9 @@ public class OkRequest {
 
             String result = null;
             if(response.isSuccessful()) {
-                result = response.body().string();
+                if (response.body() != null) {
+                    result = response.body().string();
+                }
                 System.out.printf("%s res-----> %s%n" ,TAG, result);
             }
             return result;

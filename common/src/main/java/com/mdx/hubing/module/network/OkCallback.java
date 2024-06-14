@@ -3,6 +3,7 @@ package com.mdx.hubing.module.network;
 import com.google.gson.Gson;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.Response;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,8 +21,12 @@ public abstract class OkCallback<T> implements Callback {
     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
         if (response.isSuccessful()) {
             String data = null;
+            MediaType mt = response.body().contentType();
             if (response.body() != null) {
                 data = response.body().string();
+                System.out.printf("onResponse -----> %s", data);
+            }else {
+                System.out.println("onResponse -----> %" + mt.type());
             }
 //            System.out.printf("%S---> %s%n", TAG, data);
             if (data != null) {
@@ -39,6 +44,7 @@ public abstract class OkCallback<T> implements Callback {
     @Override
     public void onFailure(@NotNull Call call, @NotNull IOException e) {
         System.out.printf("%S---> %s%s", TAG, call.request().url(), e.getMessage());
+        onFail(10101, e.getMessage());
     }
 
     private void onFail(int code, String msg) {

@@ -8,9 +8,7 @@ import com.mdx.hubing.model.dto.WxResult;
 import com.mdx.hubing.model.entity.AccountEntity;
 import com.mdx.hubing.model.mapper.AccountMapper;
 import com.mdx.hubing.module.api.WxApis;
-import com.mdx.hubing.module.network.ResultData;
 import com.mdx.hubing.service.AccountService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
