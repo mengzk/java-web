@@ -4,7 +4,7 @@ import com.mdx.hubing.exception.CustomException;
 import com.mdx.hubing.exception.ErrorCode;
 import com.mdx.hubing.model.body.ShopBody;
 import com.mdx.hubing.model.entity.ShopEntity;
-import com.mdx.hubing.model.mapper.ShopMapper;
+import com.mdx.hubing.mapper.ShopMapper;
 import com.mdx.hubing.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

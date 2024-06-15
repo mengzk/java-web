@@ -1,4 +1,4 @@
-package com.mdx.hubing.model.mapper;
+package com.mdx.hubing.mapper;
 
 import com.mdx.hubing.model.entity.FeedbackEntity;
 import org.apache.ibatis.annotations.Param;

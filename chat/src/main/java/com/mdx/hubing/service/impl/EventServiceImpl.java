@@ -4,7 +4,7 @@ import com.mdx.hubing.exception.CustomException;
 import com.mdx.hubing.exception.ErrorCode;
 import com.mdx.hubing.model.body.EventBody;
 import com.mdx.hubing.model.entity.EventEntity;
-import com.mdx.hubing.model.mapper.EventMapper;
+import com.mdx.hubing.mapper.EventMapper;
 import com.mdx.hubing.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -12,5 +12,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.mdx.hubing.mapper", "com.mdx.hubing.model.mapper"})
+@MapperScan({"com.mdx.hubing.mapper", "com.mdx.hubing.mapper"})
 public class MybatisConfig { }
