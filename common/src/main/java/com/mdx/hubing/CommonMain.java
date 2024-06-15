@@ -5,7 +5,7 @@ package com.mdx.hubing;
  * Date: 2023-11-09
  * Desc:
  */
-public class HuMain {
+public class CommonMain {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
