@@ -8,14 +8,14 @@
         <!--主键字段的对应 -->
         <id property="id" javaType="Integer" column="id"/>
         <!--非主键字段的对应-->
-        <result property="uid" javaType="Long" column="uid"/>
-        <!--        <result property="account" javaType="String" column="account"/>-->
+        <result property="uid" javaType="String" column="uid"/>
+        <result property="icon" javaType="String" column="icon"/>
         <result property="nickname" javaType="String" column="nickname"/>
         <result property="email" javaType="String" column="email"/>
         <result property="phone" javaType="String" column="phone"/>
-        <result property="sign" javaType="String" column="sign"/>
-        <result property="icon" javaType="String" column="icon"/>
-        <!--        <result property="password" javaType="String" column="pwd"/>-->
+        <result property="about" javaType="String" column="about"/>
+        <result property="pwd" javaType="String" column="pwd"/>
+        <result property="tag" javaType="Integer" column="tag"/>
         <result property="level" javaType="Integer" column="level"/>
         <result property="score" javaType="Integer" column="score"/>
         <result property="grade" javaType="Integer" column="grade"/>
@@ -28,14 +28,14 @@
     <select id="login" resultMap="accountMap">
         SELECT * FROM account
         <where>
-            <if test="body.id!=null and body.id!=''">
-                id = #{body.id};
+            <if test="body.uid!=null and body.uid!=''">
+                uid = #{body.uid};
             </if>
             <if test="body.email!=null and body.email!=''">
                 or email = #{body.email};
             </if>
-            <if test="body.sign!=null and body.sign!=''">
-               or sign = #{body.sign};
+            <if test="body.pwd!=null and body.pwd!=''">
+               and pwd = #{body.pwd};
             </if>
         </where>
     </select>
@@ -50,17 +50,17 @@
         </if>
     </select>
 
-    <select id="queryByCode" resultMap="accountMap">
-        SELECT * FROM account where sign=#{code};
+    <select id="queryByUid" resultMap="accountMap">
+        SELECT * FROM account where uid=#{uid};
     </select>
 
     <!--    <insert id="register" parameterType="com.mdx.hubing.model.entity.AccountEntity">-->
     <!--    <insert id="register" useGeneratedKeys="true" keyProperty="id" keyColumn="id">-->
     <insert id="register">
         insert into account
-        (uid,pwd,sign,phone,email,nickname,icon,tag,level,score,grade,channel,
+        (uid,pwd,about,phone,email,nickname,icon,tag,level,score,grade,channel,
         share_code,create_date) values
-        (#{user.uid},#{user.pwd},#{user.sign},#{user.phone},#{user.email},#{user.nickname},
+        (#{user.uid},#{user.pwd},#{user.about},#{user.phone},#{user.email},#{user.nickname},
         #{user.icon},#{user.tag},#{user.level},#{user.score},#{user.grade},#{user.channel},
         #{user.shareCode},#{user.createDate});
         <selectKey keyProperty="id" keyColumn="id" order="AFTER" resultType="int">
@@ -84,9 +84,9 @@
         where id = #{body.id};
     </update>
 
-    <select id="reset" resultType="int">
-        SELECT count(*) FROM account;
-    </select>
+    <update id="reset">
+        update account pwd = #{pwd} where id = #{id};
+    </update>
 
     <select id="logout" resultType="int">
         SELECT count(*) FROM account;

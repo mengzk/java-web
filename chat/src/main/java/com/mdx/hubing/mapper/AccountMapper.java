@@ -22,11 +22,11 @@ public interface AccountMapper {
 
     int query(@Param("body") LoginBody body);
 
-    AccountDao queryByCode(@Param("code") String code);
+    AccountDao queryByUid(@Param("uid") String uid);
 
     int updateAccount(@Param("body") LoginBody body);
 
-    int reset(@Param("token") String token);
+    int reset(@Param("id") int id, @Param("pwd") String pwd);
 
     int logout(int id);
 

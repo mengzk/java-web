@@ -7,17 +7,20 @@ package com.mdx.hubing.model.dto;
  */
 public class AccountDao {
     private int id;
-    private long uid;
+    private String uid;
+    private String pwd;
+    private String icon;
     private String nickname;
     private String phone;
     private String email;
-    private String sign;
-    private String icon;
-    private int status;
+    private String about;
+    private String birth;
+    private String city;
+    private int tag; //
     private int level;
     private int score;
     private int grade; //
-    private int tag; //
+    private int status;
     private int channel; //
     private String shareCode; //
     private String createTime;
@@ -27,7 +30,7 @@ public class AccountDao {
         return "AccountDao{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
-                ", sign='" + sign + '\'' +
+                ", about='" + about + '\'' +
                 ", icon='" + icon + '\'' +
                 ", level=" + level +
                 ", shareCode='" + shareCode + '\'' +
@@ -43,11 +46,11 @@ public class AccountDao {
         this.id = id;
     }
 
-    public long getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(long uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -75,12 +78,12 @@ public class AccountDao {
         this.email = email;
     }
 
-    public String getSign() {
-        return sign;
+    public String getAbout() {
+        return about;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setAbout(String about) {
+        this.about = about;
     }
 
     public String getIcon() {

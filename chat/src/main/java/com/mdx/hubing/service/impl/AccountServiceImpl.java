@@ -65,7 +65,7 @@ public class AccountServiceImpl implements AccountService {
         // 获取账号
         AccountDao account = null;
         try {
-            account = accountMapper.queryByCode(data.openid);
+            account = accountMapper.queryByUid(data.openid);
             System.out.println(account);
             // 没有注册账号
             if (account == null) {
@@ -81,7 +81,7 @@ public class AccountServiceImpl implements AccountService {
 //                BeanUtils.copyProperties(body, entity);
                 System.out.println(entity);
                 accountMapper.register(entity);
-                account = accountMapper.queryByCode(data.openid);
+                account = accountMapper.queryByUid(data.openid);
                 System.out.println(account);
             }
         } catch (Exception e) {
