@@ -65,6 +65,13 @@ public class AccountController {
         return ResultBody.success(code);
     }
 
+    //
+    @RequestMapping(value = "total")
+    public ResultBody total() {
+        int count = service.total();
+        return ResultBody.success(count);
+    }
+
     // 重置账号
     @RequestMapping(value = "query")
     public ResultBody accountAll() {

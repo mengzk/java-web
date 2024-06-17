@@ -24,6 +24,7 @@ public class AccountDao {
     private int channel; //
     private String shareCode; //
     private String createTime;
+    private String channelSign;
 
     @Override
     public String toString() {

@@ -23,6 +23,8 @@
         <result property="channel" javaType="Integer" column="channel"/>
         <result property="shareCode" javaType="String" column="share_code"/>
         <result property="createTime" javaType="String" column="create_time"/>
+        <result property="channelSign" javaType="String" column="channel_sign"/>
+
     </resultMap>
 
     <select id="login" resultMap="accountMap">

@@ -21,5 +21,6 @@ public interface AccountService {
     int reset(LoginBody body);
     int logout(String token);
     int delete(String token);
+    int total();
     ArrayList<AccountDao> accountAll();
 }

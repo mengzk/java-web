@@ -11,7 +11,7 @@ public class AccountEntity {
     private int id;
     private long uid;
     private String pwd;
-    private String sign;
+    private String channelSign;
     private String phone;
     private String email;
     private String nickname;
@@ -34,7 +34,7 @@ public class AccountEntity {
         return "AccountEntity{" +
                 "id=" + id +
                 ", pwd='" + pwd + '\'' +
-                ", sign='" + sign + '\'' +
+                ", channelSign='" + channelSign + '\'' +
                 ", phone='" + phone + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", icon='" + icon + '\'' +
@@ -70,12 +70,12 @@ public class AccountEntity {
         this.pwd = pwd;
     }
 
-    public String getSign() {
-        return sign;
+    public String getChannelSign() {
+        return channelSign;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setChannelSign(String channelSign) {
+        this.channelSign = channelSign;
     }
 
     public String getPhone() {

@@ -73,7 +73,7 @@ public class AccountServiceImpl implements AccountService {
 //                System.out.println(body);
                 AccountEntity entity = new AccountEntity();
                 entity.setUid(100000 + size);
-                entity.setSign(body.sign);
+                entity.setChannelSign(body.sign);
                 entity.setNickname(body.nickname);
                 entity.setIcon(body.icon);
                 entity.setPwd(body.pwd);
@@ -115,6 +115,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int delete(String token) {
         return 0;
+    }
+
+    @Override
+    public int total() {
+        return accountMapper.accountNum();
     }
 
     @Override
