@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public interface AccountService {
     AccountDao register(LoginBody body) throws CustomException;
-    AccountDao login(LoginBody body);
+    AccountDao login(LoginBody body) throws CustomException;
     AccountDao wxLogin(LoginBody body) throws CustomException;
     int update(LoginBody body);
     int reset(LoginBody body);

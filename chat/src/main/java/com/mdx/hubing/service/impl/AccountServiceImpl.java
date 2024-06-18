@@ -44,9 +44,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDao login(LoginBody body) {
+    public AccountDao login(LoginBody body) throws CustomException {
+        if(body.pwd.isEmpty() || (body.phone.isEmpty() && body.email.isEmpty())) {
+            throw CustomException.create(ErrorCode.ACCOUNT_EMPTY);
+        }
         AccountDao account = accountMapper.login(body);
-
+        if(account == null) {
+            throw CustomException.create(ErrorCode.ACCOUNT_ERR);
+        }
         return account;
     }
 

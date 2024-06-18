@@ -13,9 +13,14 @@ public enum ErrorCode implements CustomError {
     PARAM_EMPTY(10102, "参数不能为空"),
     PARAM_FAIL(10003, "参数不正确"),
     PARAM_VALIDATE_FAIL(10004, "参数检验失败"),
+
     UNAUTHORIZED(10012, "未登录或登录已过期"),
+
     ACCOUNT_EXIST(10101, "账号已存在"),
-    LOGIN_ERR(10102, "账号登录失败"),
+    ACCOUNT_ERR(10102, "账号或密码不正确"),
+    ACCOUNT_EMPTY(10103, "账号或密码不能为空"),
+
+    LOGIN_ERR(10103, "账号登录失败"),
     WX_ACCOUNT(10201, "微信账号异常"),
     FORBIDDEN(10100, "没有相关权限");
 

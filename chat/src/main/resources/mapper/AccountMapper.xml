@@ -30,14 +30,14 @@
     <select id="login" resultMap="accountMap">
         SELECT * FROM account
         <where>
-            <if test="body.uid!=null and body.uid!=''">
-                uid = #{body.uid};
+            <if test="body.phone!=null and body.phone!=''">
+                phone = #{body.phone}
             </if>
             <if test="body.email!=null and body.email!=''">
-                or email = #{body.email};
+                or email = #{body.email}
             </if>
             <if test="body.pwd!=null and body.pwd!=''">
-               and pwd = #{body.pwd};
+               and pwd = #{body.pwd}
             </if>
         </where>
     </select>
