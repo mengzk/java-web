@@ -14,7 +14,7 @@
         <result property="email" javaType="String" column="email"/>
         <result property="phone" javaType="String" column="phone"/>
         <result property="about" javaType="String" column="about"/>
-        <result property="pwd" javaType="String" column="pwd"/>
+<!--        <result property="pwd" javaType="String" column="pwd"/>-->
         <result property="tag" javaType="Integer" column="tag"/>
         <result property="level" javaType="Integer" column="level"/>
         <result property="score" javaType="Integer" column="score"/>
@@ -24,7 +24,6 @@
         <result property="shareCode" javaType="String" column="share_code"/>
         <result property="createDate" javaType="String" column="create_date"/>
         <result property="channelSign" javaType="String" column="channel_sign"/>
-
     </resultMap>
 
     <select id="login" resultMap="accountMap">
@@ -42,7 +41,6 @@
         </where>
     </select>
 
-    <!--    <insert id="register" parameterType="com.mdx.hubing.model.entity.AccountEntity">-->
     <!--    <insert id="register" useGeneratedKeys="true" keyProperty="id" keyColumn="id">-->
     <insert id="register" useGeneratedKeys="true" keyProperty="id">
         insert into account

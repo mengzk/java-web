@@ -8,7 +8,7 @@ package com.mdx.hubing.model.dto;
 public class AccountDao {
     private int id;
     private String uid;
-    private String pwd;
+//    private String pwd;
     private String icon;
     private String nickname;
     private String phone;
@@ -55,6 +55,14 @@ public class AccountDao {
         this.uid = uid;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getNickname() {
         return nickname;
     }
@@ -87,20 +95,28 @@ public class AccountDao {
         this.about = about;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getBirth() {
+        return birth;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
-    public int getStatus() {
-        return status;
+    public String getCity() {
+        return city;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getTag() {
+        return tag;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
     }
 
     public int getLevel() {
@@ -127,12 +143,12 @@ public class AccountDao {
         this.grade = grade;
     }
 
-    public int getTag() {
-        return tag;
+    public int getStatus() {
+        return status;
     }
 
-    public void setTag(int tag) {
-        this.tag = tag;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getChannel() {
@@ -155,7 +171,15 @@ public class AccountDao {
         return createDate;
     }
 
-    public void setCreateDate(String createTime) {
-        this.createDate = createTime;
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getChannelSign() {
+        return channelSign;
+    }
+
+    public void setChannelSign(String channelSign) {
+        this.channelSign = channelSign;
     }
 }
