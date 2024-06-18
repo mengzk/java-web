@@ -28,16 +28,18 @@ public class AccountServiceImpl implements AccountService {
      * 注册
      */
     @Override
-    public AccountEntity register(LoginBody body) {
-        int id = 0;
-        try {
-            id = accountMapper.query(body);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-//        if (id > 0) {
-//            throw CustomException.create(ErrorCode.ACCOUNT_EXIST);
+    public AccountDao register(LoginBody body) throws CustomException {
+        Integer id = accountMapper.check(body);
+        AccountEntity entity = new AccountEntity(body.phone, body.email, body.pwd);
+//        try {
+            if(id != null) {
+                throw CustomException.create(ErrorCode.ACCOUNT_EXIST);
+            }
+            id = accountMapper.register(entity);
+//        } catch (CustomException e) {
+//            System.out.println(e.getMessage());
 //        }
+        System.out.println("user-id:" + id);
         return null;
     }
 
@@ -72,15 +74,9 @@ public class AccountServiceImpl implements AccountService {
                 int size = accountMapper.accountNum();
 //                System.out.println(body);
                 AccountEntity entity = new AccountEntity();
-                entity.setUid(100000 + size);
-                entity.setChannelSign(body.sign);
-                entity.setNickname(body.nickname);
-                entity.setIcon(body.icon);
-                entity.setPwd(body.pwd);
-                entity.setPhone(body.phone);
 //                BeanUtils.copyProperties(body, entity);
                 System.out.println(entity);
-                accountMapper.register(entity);
+//                accountMapper.register(entity);
                 account = accountMapper.queryByUid(data.openid);
                 System.out.println(account);
             }

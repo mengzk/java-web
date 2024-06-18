@@ -23,7 +23,7 @@ public class AccountDao {
     private int status;
     private int channel; //
     private String shareCode; //
-    private String createTime;
+    private String createDate;
     private String channelSign;
 
     @Override
@@ -35,7 +35,7 @@ public class AccountDao {
                 ", icon='" + icon + '\'' +
                 ", level=" + level +
                 ", shareCode='" + shareCode + '\'' +
-                ", createTime='" + createTime + '\'' +
+                ", createDate='" + createDate + '\'' +
                 '}';
     }
 
@@ -151,11 +151,11 @@ public class AccountDao {
         this.shareCode = shareCode;
     }
 
-    public String getCreateTime() {
-        return createTime;
+    public String getCreateDate() {
+        return createDate;
     }
 
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
+    public void setCreateDate(String createTime) {
+        this.createDate = createTime;
     }
 }

@@ -26,7 +26,7 @@ public class AccountController {
     // 注册
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResultBody register(@RequestBody LoginBody body) throws Exception {
-        AccountEntity user = service.register(body);
+        AccountDao user = service.register(body);
         return ResultBody.success(user);
     }
 

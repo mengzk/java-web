@@ -14,13 +14,16 @@ import java.util.ArrayList;
  */
 public interface AccountMapper {
 
-    int register(@Param("user") AccountEntity account);
+    //    int register(@Param("user") LoginBody account);
+    int register(@Param("user") AccountEntity entity);
 
     AccountDao login(@Param("body") LoginBody body);
 
     AccountDao wxLogin(@Param("body") LoginBody body);
 
-    int query(@Param("body") LoginBody body);
+    Integer check(@Param("body") LoginBody body);
+
+    Integer query(@Param("body") LoginBody body);
 
     AccountDao queryByUid(@Param("uid") String uid);
 

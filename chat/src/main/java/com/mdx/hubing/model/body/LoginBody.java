@@ -6,7 +6,7 @@ package com.mdx.hubing.model.body;
  * Desc:
  */
 public class LoginBody {
-    public int id;
+    //    public int id;
     public String pwd;
     public String nickname;
     public String email;
@@ -17,13 +17,14 @@ public class LoginBody {
 
     @Override
     public String toString() {
-        return "LoginBody{" +
-                "icon='" + icon + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", sign='" + sign + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", code='" + code + '\'' +
-                '}';
+        return "LoginBody: " +
+                "phone=" + phone +
+                ", email=" + email +
+                ", pwd=" + pwd +
+                ", code=" + code +
+                ", nickname=" + nickname +
+                ", sign=" + sign +
+                ", icon=" + icon;
     }
 
 }

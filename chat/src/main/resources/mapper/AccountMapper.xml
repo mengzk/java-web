@@ -22,7 +22,7 @@
         <result property="status" javaType="Integer" column="status"/>
         <result property="channel" javaType="Integer" column="channel"/>
         <result property="shareCode" javaType="String" column="share_code"/>
-        <result property="createTime" javaType="String" column="create_time"/>
+        <result property="createDate" javaType="String" column="create_date"/>
         <result property="channelSign" javaType="String" column="channel_sign"/>
 
     </resultMap>
@@ -42,29 +42,13 @@
         </where>
     </select>
 
-    <select id="query" resultType="int">
-        SELECT id FROM account where
-        <if test="body.phone!=null and body.phone!=''">
-            phone = #{body.phone};
-        </if>
-        <if test="body.email!=null and body.email!=''">
-            email = #{body.email};
-        </if>
-    </select>
-
-    <select id="queryByUid" resultMap="accountMap">
-        SELECT * FROM account where uid=#{uid};
-    </select>
-
     <!--    <insert id="register" parameterType="com.mdx.hubing.model.entity.AccountEntity">-->
     <!--    <insert id="register" useGeneratedKeys="true" keyProperty="id" keyColumn="id">-->
-    <insert id="register">
+    <insert id="register" useGeneratedKeys="true" keyProperty="id">
         insert into account
-        (uid,pwd,about,phone,email,nickname,icon,tag,level,score,grade,channel,
-        share_code,create_date) values
-        (#{user.uid},#{user.pwd},#{user.about},#{user.phone},#{user.email},#{user.nickname},
-        #{user.icon},#{user.tag},#{user.level},#{user.score},#{user.grade},#{user.channel},
-        #{user.shareCode},#{user.createDate});
+        (uid,pwd,phone,email,nickname,icon,channel,share_code,create_date,channel_sign) values
+        (#{user.uid},#{user.pwd},#{user.phone},#{user.email},#{user.nickname},
+        #{user.icon},#{user.channel},#{user.shareCode},#{user.createDate},#{user.channelSign});
         <selectKey keyProperty="id" keyColumn="id" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID();
         </selectKey>
@@ -85,6 +69,30 @@
         </set>
         where id = #{body.id};
     </update>
+
+    <select id="check" resultType="Integer">
+        SELECT id FROM account where
+        <if test="body.phone!=null and body.phone!=''">
+            phone = #{body.phone};
+        </if>
+        <if test="body.email!=null and body.email!=''">
+            email = #{body.email};
+        </if>
+    </select>
+
+    <select id="query" resultType="Integer">
+        SELECT id FROM account where
+        <if test="body.phone!=null and body.phone!=''">
+            phone = #{body.phone};
+        </if>
+        <if test="body.email!=null and body.email!=''">
+            email = #{body.email};
+        </if>
+    </select>
+
+    <select id="queryByUid" resultMap="accountMap">
+        SELECT * FROM account where uid=#{uid};
+    </select>
 
     <update id="reset">
         update account pwd = #{pwd} where id = #{id};
