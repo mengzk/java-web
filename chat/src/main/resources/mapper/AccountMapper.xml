@@ -47,7 +47,7 @@
         (uid,pwd,phone,email,nickname,icon,channel,share_code,create_date,channel_sign) values
         (#{user.uid},#{user.pwd},#{user.phone},#{user.email},#{user.nickname},
         #{user.icon},#{user.channel},#{user.shareCode},#{user.createDate},#{user.channelSign});
-        <selectKey keyProperty="id" keyColumn="id" order="AFTER" resultType="int">
+        <selectKey keyProperty="id" keyColumn="id" order="AFTER" resultType="Integer">
             SELECT LAST_INSERT_ID();
         </selectKey>
     </insert>

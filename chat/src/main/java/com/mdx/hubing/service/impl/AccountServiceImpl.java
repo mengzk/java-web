@@ -31,25 +31,20 @@ public class AccountServiceImpl implements AccountService {
     public AccountDao register(LoginBody body) throws CustomException {
         Integer id = accountMapper.check(body);
         AccountEntity entity = new AccountEntity(body.phone, body.email, body.pwd);
-//        try {
-            if(id != null) {
-                throw CustomException.create(ErrorCode.ACCOUNT_EXIST);
-            }
-            id = accountMapper.register(entity);
-//        } catch (CustomException e) {
-//            System.out.println(e.getMessage());
-//        }
-        System.out.println("user-id:" + id);
-        return null;
+        if (id != null) {
+            throw CustomException.create(ErrorCode.ACCOUNT_EXIST);
+        }
+        accountMapper.register(entity);
+        return login(body);
     }
 
     @Override
     public AccountDao login(LoginBody body) throws CustomException {
-        if(body.pwd.isEmpty() || (body.phone.isEmpty() && body.email.isEmpty())) {
+        if (body.pwd.isEmpty() || (body.phone.isEmpty() && body.email.isEmpty())) {
             throw CustomException.create(ErrorCode.ACCOUNT_EMPTY);
         }
         AccountDao account = accountMapper.login(body);
-        if(account == null) {
+        if (account == null) {
             throw CustomException.create(ErrorCode.ACCOUNT_ERR);
         }
         return account;
@@ -94,10 +89,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int update(LoginBody body) {
         int code = 0;
-        try{
+        try {
             System.out.println(body);
             code = accountMapper.updateAccount(body);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return code;

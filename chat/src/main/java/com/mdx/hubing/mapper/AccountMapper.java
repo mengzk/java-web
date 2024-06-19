@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public interface AccountMapper {
 
     //    int register(@Param("user") LoginBody account);
-    int register(@Param("user") AccountEntity entity);
+    Integer register(@Param("user") AccountEntity entity);
 
     AccountDao login(@Param("body") LoginBody body);
 
