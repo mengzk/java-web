@@ -4,11 +4,13 @@ import com.mdx.hubing.exception.CustomException;
 import com.mdx.hubing.exception.ErrorCode;
 import com.mdx.hubing.model.body.LoginBody;
 import com.mdx.hubing.model.dto.AccountDao;
+import com.mdx.hubing.model.dto.LoginDao;
 import com.mdx.hubing.model.dto.WxResult;
 import com.mdx.hubing.model.entity.AccountEntity;
 import com.mdx.hubing.mapper.AccountMapper;
 import com.mdx.hubing.module.api.WxApis;
 import com.mdx.hubing.service.AccountService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,22 +26,22 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountMapper accountMapper;
 
-    /**
-     * 注册
-     */
+    // 注册
     @Override
-    public AccountDao register(LoginBody body) throws CustomException {
+    public LoginDao register(LoginBody body) throws CustomException {
         Integer id = accountMapper.check(body);
-        AccountEntity entity = new AccountEntity(body.phone, body.email, body.pwd);
         if (id != null) {
             throw CustomException.create(ErrorCode.ACCOUNT_EXIST);
         }
-        accountMapper.register(entity);
+        AccountEntity entity = new AccountEntity(body.phone, body.email, body.pwd);
+        id = accountMapper.register(entity);
+        System.out.println("register ---------> " + id);
         return login(body);
     }
 
+    // 登录
     @Override
-    public AccountDao login(LoginBody body) throws CustomException {
+    public LoginDao login(LoginBody body) throws CustomException {
         if (body.pwd.isEmpty() || (body.phone.isEmpty() && body.email.isEmpty())) {
             throw CustomException.create(ErrorCode.ACCOUNT_EMPTY);
         }
@@ -47,14 +49,17 @@ public class AccountServiceImpl implements AccountService {
         if (account == null) {
             throw CustomException.create(ErrorCode.ACCOUNT_ERR);
         }
-        return account;
+        LoginDao dao = new LoginDao();
+        BeanUtils.copyProperties(account, dao);
+        dao.setToken("12324365787678");
+        return dao;
     }
 
     /**
      * 微信注册
      */
     @Override
-    public AccountDao wxLogin(LoginBody body) throws CustomException {
+    public LoginDao wxLogin(LoginBody body) throws CustomException {
         if (body.sign == null) {
             throw CustomException.create(ErrorCode.PARAM_EMPTY);
         }
@@ -83,7 +88,7 @@ public class AccountServiceImpl implements AccountService {
         } catch (Exception e) {
             throw CustomException.create(ErrorCode.LOGIN_ERR);
         }
-        return account;
+        return new LoginDao();
     }
 
     @Override

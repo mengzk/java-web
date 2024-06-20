@@ -2,6 +2,7 @@ package com.mdx.hubing.controller;
 
 import com.mdx.hubing.model.body.*;
 import com.mdx.hubing.model.dto.AccountDao;
+import com.mdx.hubing.model.dto.LoginDao;
 import com.mdx.hubing.model.entity.AccountEntity;
 import com.mdx.hubing.module.result.ResultBody;
 import com.mdx.hubing.service.AccountService;
@@ -26,21 +27,21 @@ public class AccountController {
     // 注册
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResultBody register(@RequestBody LoginBody body) throws Exception {
-        AccountDao user = service.register(body);
+        LoginDao user = service.register(body);
         return ResultBody.success(user);
     }
 
     // 登陆
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResultBody login(@RequestBody LoginBody body) throws Exception {
-        AccountDao user = service.login(body);
+        LoginDao user = service.login(body);
         return ResultBody.success(user);
     }
 
     // 登陆
     @RequestMapping(value = "wxLogin", method = RequestMethod.POST)
     public ResultBody wxLogin(@RequestBody LoginBody body) throws Exception {
-        AccountDao user = service.wxLogin(body);
+        LoginDao user = service.wxLogin(body);
         return ResultBody.success(user);
     }
 
