@@ -32,6 +32,18 @@ mybatis:
     - classpath:mapper/*.xml
     - classpath*:com/**/mapper/*.xml
 
+scheduled:
+  cron: 0 0 0 * * ? #每天凌晨执行定时任务
+  hour: 1 #每小时执行一次定时任务
+  minute: 1 #每分钟执行一次定时任务
+  second: 1 #每秒执行一次定时任务
+  hourAndMinute: 1:1 #每天1点1分执行一次定时任务
+  minute10: 0 0/10 * * * ? #每10分钟执行一次定时任务
+  fixedRate: 1000 #每隔1秒执行一次定时任务
+  fixedDelay: 1000 #每隔1秒执行一次定时任务
+  initialDelay: 1000 #延迟1秒后执行定时任务
+
+
 #jwt:
 #  tokenHeader: Authorization #JWT存储的请求头
 #  secret: mall-admin-secret #JWT加解密使用的密钥
