@@ -54,6 +54,21 @@ public class OssServiceImpl implements OssService {
     }
 
     @Override
+    public FileDao fileUploads(List<MultipartFile> files, String env) {
+        FileDao dto = null;
+        try {
+            System.out.println("size: " + files.size());
+            for (MultipartFile file : files) {
+                System.out.println(file.getName());
+                System.out.println(file.getOriginalFilename());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
+
+    @Override
     public int copyFile(String path) throws CustomException {
         if(TextUtils.empty(path)) {
             throw CustomException.create(ErrorCode.PARAM_EMPTY);

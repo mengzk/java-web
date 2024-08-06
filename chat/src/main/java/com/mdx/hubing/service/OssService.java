@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface OssService {
     FileDao fileUpload(MultipartFile file, @RequestParam("env") String env);
+    FileDao fileUploads(List<MultipartFile> files, @RequestParam("env") String env);
     List<FileDao> filesUpload(List<MultipartFile> files, @RequestParam("env") String env);
     int deleteFile(String path) throws CustomException; // 删除文件
     int copyFile(String path) throws CustomException; // 复制文件

@@ -16,7 +16,7 @@ public class Chat {
     public static void request() {
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", "1234567890");
-        RequestOption<ChatBody> option = new RequestOption<>("http://192.168.243.92:8093/file/download");
+        RequestOption option = new RequestOption("http://192.168.243.92:8093/file/download");
         option.headers = headers;
 
         option.method = "GET";

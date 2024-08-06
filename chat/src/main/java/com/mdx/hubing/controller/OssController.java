@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * Author: Meng
  * Date: 2023-03-22
@@ -24,6 +26,12 @@ public class OssController {
     @RequestMapping("upload")
     public ResultBody fileUpload(@RequestParam(value = "env",required = false) String env, @RequestParam("file") MultipartFile file) {
         return ResultBody.success(ossService.fileUpload(file, env));
+    }
+
+    // 批量上传文件
+    @RequestMapping("uploads")
+    public ResultBody fileUploads(@RequestParam(value = "env",required = false) String env, @RequestParam("files") List<MultipartFile> files) {
+        return ResultBody.success(ossService.fileUploads(files, env));
     }
 
     // 删除文件
