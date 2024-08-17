@@ -28,11 +28,6 @@ public class OssServiceImpl implements OssService {
     }
 
     @Override
-    public List<FileDao> filesUpload(List<MultipartFile> files, String env) {
-        return null;
-    }
-
-    @Override
     public FileDao fileUpload(MultipartFile file, String env) {
         FileDao dto = null;
         try {
