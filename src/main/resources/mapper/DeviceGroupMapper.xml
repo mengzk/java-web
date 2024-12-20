@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mon.aichat.mapper.DeviceGroupMapper">
+
+    <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
+    <resultMap id="groupMap" type="com.mon.aichat.model.dto.DeviceGroup">
+        <!--主键字段的对应 -->
+        <id property="id" javaType="Integer" column="id"/>
+        <!--非主键字段的对应-->
+        <result property="manager" javaType="String" column="manager"/>
+        <result property="phone" javaType="String" column="phone"/>
+        <result property="name" javaType="String" column="name"/>
+        <result property="memo" javaType="String" column="memo"/>
+    </resultMap>
+
+    <select id="onQuery" resultMap="groupMap">
+        SELECT * FROM ac_device_group limit #{start},#{size};
+    </select>
+
+    <insert id="onCreate">
+        insert into ac_device_group (manager,phone,name,memo) values
+        (#{body.manager},#{body.phone},#{body.name},#{body.memo});
+    </insert>
+
+    <update id="onUpdate">
+        update ac_device_group
+        <set>
+            <if test="body.manager!=null">
+                manager = #{body.manager},
+            </if>
+            <if test="body.phone!=null">
+                phone = #{body.phone},
+            </if>
+            <if test="body.name!=null and body.name!=''">
+                name = #{body.name},
+            </if>
+            <if test="body.memo!=null and body.memo!=''">
+                memo = #{body.memo},
+            </if>
+        </set>
+        where id = #{body.id};
+    </update>
+
+    <delete id="onDelete">
+        delete from ac_device_group where id=#{id}
+    </delete>
+
+    <select id="onCount" resultType="Integer">
+        SELECT count(*) FROM ac_device_group;
+    </select>
+</mapper>
