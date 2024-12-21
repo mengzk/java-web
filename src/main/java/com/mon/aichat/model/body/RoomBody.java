@@ -7,15 +7,10 @@ import java.util.Date;
  * Date: 2024-08-17
  * Desc:
  */
-public class DeviceBody {
+public class RoomBody {
     public Integer id;
-    public int gid;
-    public int uid;
-    public int price;
+    public int style;
     public int status;
-    public int level;
-    public int score;
-    public String sn;
     public String name;
     public String memo;
     public Date createDate;

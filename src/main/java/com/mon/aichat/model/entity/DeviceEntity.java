@@ -1,14 +1,14 @@
-package com.mon.aichat.model.body;
+package com.mon.aichat.model.entity;
 
 import java.util.Date;
 
 /**
  * Author: Meng
- * Date: 2024-08-17
+ * Date: 2024-08-19
  * Desc:
  */
-public class DeviceBody {
-    public Integer id;
+public class DeviceEntity {
+    public int id;
     public int gid;
     public int uid;
     public int price;

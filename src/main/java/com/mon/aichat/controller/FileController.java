@@ -1,9 +1,7 @@
 package com.mon.aichat.controller;
 
-import com.mon.aichat.model.body.KnowledgeBody;
 import com.mon.aichat.model.result.ResultBody;
 import com.mon.aichat.service.FileService;
-import com.mon.aichat.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

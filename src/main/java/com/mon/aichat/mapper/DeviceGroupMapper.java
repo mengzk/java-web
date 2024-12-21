@@ -20,7 +20,7 @@ public interface DeviceGroupMapper {
     /**
      * 添加设备组
      */
-    int onCreate(@Param("body") DeviceGroupBody body);
+    int onInsert(@Param("body") DeviceGroupBody body);
 
     /**
      * 更新设备组

@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Update;
 /**
  * Author: Meng
  * Date: 2024-07-23
- * Desc:
+ * Desc: 修改Token
+ *
  */
 public interface TokenMapper {
 
@@ -19,8 +20,6 @@ public interface TokenMapper {
     int insert(@Param("id") int uid, @Param("value") String token);
 
     int update(@Param("id") int uid, @Param("value") String token);
-
-    void upsert(@Param("id") int uid, @Param("value") String token);
 
     int delete(@Param("id") int userId);
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mon.aichat.mapper.DemoMapper">
+
+    <!--    &lt; for < (less-than)-->
+    <!--    &gt; for > (greater-than)-->
+    <!--    &amp; for & (ampersand)-->
+    <!--    &quot; for " (double quote)-->
+    <!--    &apos; for ' (single quote)-->
+
+    <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
+    <resultMap id="roomMap" type="com.mon.aichat.model.entity.RoomEntity">
+        <!--主键字段的对应 -->
+        <id property="id" javaType="Integer" column="id"/>
+        <!--非主键字段的对应-->
+        <result property="createDate" javaType="Date" column="create_date"/>
+    </resultMap>
+
+    <cache/>
+
+    <insert id="insert">
+        INSERT INTO token (userId, value) VALUES (#{id},#{value});
+    </insert>
+
+    <update id="update">
+        UPDATE token
+        <set>
+            value=#{value}
+        </set>
+        WHERE userId=#{id};
+    </update>
+
+    <!--  添加缓存  -->
+    <select id="query" resultType="com.mon.aichat.model.entity.TokenEntity">
+        SELECT * FROM token where userId=#{id};
+    </select>
+
+    <delete id="delete">
+        DELETE FROM token WHERE userId=#{id};
+    </delete>
+
+    <select id="exists" resultType="int">
+        SELECT COUNT(*) FROM token WHERE userId=#{id};
+    </select>
+
+    <update id="upsert">
+        <choose>
+            <when test="exists(id) > 0">
+                UPDATE token
+                <set>
+                    value=#{value}
+                </set>
+                WHERE userId=#{id};
+            </when>
+            <otherwise>
+                INSERT INTO token (userId, value) VALUES (#{id}, #{value});
+            </otherwise>
+        </choose>
+    </update>
+</mapper>

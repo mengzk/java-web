@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mon.aichat.mapper.BookingMapper">
+
+    <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
+    <resultMap id="bookMap" type="com.mon.aichat.model.entity.BookingEntity">
+        <!--主键字段的对应 -->
+        <id property="id" javaType="Integer" column="id"/>
+        <!--非主键字段的对应-->
+        <result property="tag" javaType="Integer" column="tag"/>
+        <result property="status" javaType="Integer" column="status"/>
+        <result property="start" javaType="Date" column="start"/>
+        <result property="end" javaType="Date" column="end"/>
+        <result property="time" javaType="Date" column="time"/>
+        <result property="theme" javaType="String" column="theme"/>
+        <result property="content" javaType="String" column="content"/>
+        <result property="memo" javaType="String" column="memo"/>
+    </resultMap>
+
+    <select id="onQuery" resultMap="bookMap">
+        SELECT * FROM booking where
+        <if test="tag!=null">
+            tag = #{tag}
+        </if>
+        <if test="status!=null">
+            and status = #{status}
+        </if>
+        limit #{start},#{size};
+    </select>
+
+    <select id="onTotalByTime" resultType="int">
+        SELECT count(*) FROM booking where tag=1;
+    </select>
+
+    <insert id="onInsert">
+        insert into booking (tag,start,end,time,theme,content,memo) values
+        (#{tag},#{start},#{end},#{time},#{theme},#{content},#{memo});
+    </insert>
+
+    <delete id="onDelete">
+        delete from booking where id = #{id};
+    </delete>
+
+    <update id="onUpdate">
+        update booking
+        <set>
+            <if test="tag!=null">
+                tag = #{tag},
+            </if>
+            <if test="start!=null">
+                start = #{start},
+            </if>
+            <if test="end!=null">
+                end = #{end},
+            </if>
+            <if test="time!=null">
+                time = #{time},
+            </if>
+            <if test="theme!=null and end!=''">
+                theme = #{theme},
+            </if>
+            <if test="content!=null and end!=''">
+                content = #{content},
+            </if>
+            <if test="memo!=null and end!=''">
+                memo = #{memo}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+</mapper>

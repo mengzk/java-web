@@ -17,14 +17,18 @@ public interface DeviceMapper {
     /**
      * 添加设备
      */
-     int onCreate(@Param("body") DeviceBody body);
+     int onInsert(@Param("body") DeviceBody body);
 
     /**
      * 查询设备
      */
      List<Device> onQuery(@Param("start") int start, @Param("size") int size);
 
+     List<Device> onQueryOfGroup(@Param("gid") int gid, @Param("start") int start, @Param("size") int size);
+
      int onCount();
+
+     int onCountOfGroup(@Param("gid") int gid);
 
     /**
      * 更新设备

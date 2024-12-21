@@ -6,5 +6,6 @@ package com.mon.aichat.model.body;
  * Desc:
  */
 public class ChatBody {
-
+    public String id;
+    public String msg;
 }

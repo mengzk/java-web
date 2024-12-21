@@ -4,19 +4,27 @@
 <mapper namespace="com.mon.aichat.mapper.DeviceMapper">
 
     <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
-    <resultMap id="deviceMap" type="com.mon.aichat.model.dto.Device">
+    <resultMap id="deviceMap" type="com.mon.aichat.model.entity.DeviceEntity">
         <!--主键字段的对应 -->
         <id property="id" javaType="Integer" column="id"/>
         <!--非主键字段的对应-->
-<!--        <result property="gid" javaType="Integer" column="gid"/>-->
-        <result property="deviceType" javaType="Integer" column="device_type"/>
-        <result property="nickname" javaType="String" column="nickname"/>
+        <result property="gid" javaType="Integer" column="gid"/>
+        <result property="uid" javaType="Integer" column="uid"/>
+        <result property="status" javaType="Integer" column="status"/>
+        <result property="price" javaType="Integer" column="price"/>
+        <result property="level" javaType="Integer" column="level"/>
+        <result property="score" javaType="Integer" column="score"/>
         <result property="sn" javaType="String" column="sn"/>
+        <result property="name" javaType="String" column="name"/>
         <result property="memo" javaType="String" column="memo"/>
-        <result property="createTime" javaType="String" column="create_time"/>
+        <result property="createDate" javaType="Date" column="create_date"/>
     </resultMap>
 
     <select id="onQuery" resultMap="deviceMap">
+        SELECT * FROM ac_device where device_type=1 limit #{start},#{size};
+    </select>
+
+    <select id="onQueryOfGroup" resultMap="deviceMap">
         SELECT * FROM ac_device where device_type=1 limit #{start},#{size};
     </select>
 
@@ -24,7 +32,11 @@
         SELECT count(*) FROM ac_device;
     </select>
 
-    <insert id="onCreate">
+    <select id="onCountOfGroup" resultType="int">
+        SELECT count(*) FROM ac_device where gid=#{gid};
+    </select>
+
+    <insert id="onInsert">
         insert into ac_device (device_type,nickname,sn,memo,create_time) values
         (#{body.deviceType},#{body.nickname},#{body.sn},#{body.memo},#{body.createTime});
     </insert>

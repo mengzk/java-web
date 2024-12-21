@@ -1,16 +1,16 @@
-package com.mon.aichat.model.body;
+package com.mon.aichat.model.entity;
 
 import java.util.Date;
 
 /**
  * Author: Meng
- * Date: 2024-08-17
+ * Date: 2024-12-21
  * Desc:
  */
-public class DeviceGroupBody {
+public class RoomEntity {
     public int id;
-    public int gid;
-    public int level;
+    public int style;
+    public int status;
     public String name;
     public String memo;
     public Date createDate;

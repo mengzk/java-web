@@ -14,7 +14,7 @@ import java.util.Base64;
  */
 public class TokenUtils {
     private static final String ENCODE_RULE = "AES"; // 转换模式
-    private static final String ENCODE_KEY = "QXKALHZJDCOPVNMS"; // 16位
+    private static final String ENCODE_KEY = "QXKALHZJDCOPVNMS"; // 16位 -每隔1周更换一次
     private static final int GAP = Configs.Token_Gap; // token过期时间 1小时
 
 //    public static void main(String[] strs) {

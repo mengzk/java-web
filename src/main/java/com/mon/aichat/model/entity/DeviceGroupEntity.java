@@ -1,13 +1,17 @@
 package com.mon.aichat.model.entity;
 
+import java.util.Date;
+
 /**
  * Author: Meng
  * Date: 2024-08-19
  * Desc:
  */
-public class DeviceGroup {
+public class DeviceGroupEntity {
     public int id;
-    public int did;
+    public int gid;
+    public int level;
     public String name;
     public String memo;
+    public Date createDate;
 }

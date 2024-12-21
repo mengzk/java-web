@@ -11,7 +11,7 @@ import java.util.List;
  * Desc:
  */
 
-public interface DeviceLinkGroupMapper {
+public interface DemoLinkTagMapper {
 
     /**
      * 查询设备
