@@ -5,7 +5,9 @@ import com.mon.aichat.model.body.RoomBody;
 import com.mon.aichat.model.entity.RoomEntity;
 import com.mon.aichat.model.result.ResultList;
 import com.mon.aichat.modules.exception.AppException;
+import com.mon.aichat.modules.exception.CommonError;
 import com.mon.aichat.modules.exception.CustomException;
+import com.mon.aichat.utils.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,18 @@ public class RoomService {
 
     // 添加会议室
     public int add(RoomBody body) throws AppException {
-        System.out.println("添加设备: " + body.toString());
-        mapper.onInsert(body);
+        if (body == null) {
+            throw CustomException.create(CommonError.PARAM_EMPTY);
+        }
+        if (TextUtils.isEmpty(body.name)) {
+            throw CustomException.create(CommonError.PARAM_Lack);
+        }
+        try {
+            mapper.onInsert(body);
+        } catch (Exception e) {
+            throw CustomException.create(CommonError.DB_ERROR);
+        }
+
         return 0;
     }
 

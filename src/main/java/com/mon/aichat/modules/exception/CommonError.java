@@ -13,7 +13,10 @@ public enum CommonError implements CustomError {
     UNKNOWN_ERR(10100, "未知错误"),
     PARAM_FAIL(10210, "参数不正确"),
     PARAM_EMPTY(10220, "参数不能为空"),
+    PARAM_Lack(10221, "必要参数不能为空"),
     PARAM_VALIDATE_FAIL(10230, "参数检验失败"),
+
+    DB_ERROR(10300, "数据库操作失败"),
 
     LOGIN_ERR(20100, "账号登录失败"),
     ACCOUNT_PWD_ERR(20110, "账号或密码错误"),
