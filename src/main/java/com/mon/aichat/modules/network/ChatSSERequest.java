@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Author: Meng
  * Date: 2024-07-23
- * Desc: 智普网络请求
+ * Desc: SSE请求
  */
 public class ChatSSERequest {
     private final static String TAG = "ChatRequest";
@@ -72,7 +72,7 @@ public class ChatSSERequest {
     }
 
     // 发送请求
-    private static OkResult<String> execute(Request.Builder builder) {
+    public static OkResult<String> execute(Request.Builder builder) {
 
         try {
             // 创建一个 CountDownLatch 对象，其初始计数为1，表示需要等待一个事件发生后才能继续执行。
@@ -97,10 +97,8 @@ public class ChatSSERequest {
 
             // 与服务器建立连接
             realEventSource.connect(client);
-
             // await() 方法被调用来阻塞当前线程，直到 CountDownLatch 的计数变为0。
             eventLatch.await();
-
             return null;
         } catch (Exception e) {
             System.out.printf("-----> %s io %s%n", TAG, e.getMessage());

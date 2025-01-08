@@ -32,7 +32,7 @@ public class ChatController {
     @PostMapping(path = "/invoke", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter invoke(@RequestBody() ChatBody body, HttpServletResponse res) {
         ChatSseEmitter sseEmitter = new ChatSseEmitter();
-        ModelData data = null;
+        ModelData data = service.sse(body.msg);
         if (data == null) {
             sseEmitter.error("1011", "数据异常");
         } else {
