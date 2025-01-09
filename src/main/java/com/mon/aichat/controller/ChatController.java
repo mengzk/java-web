@@ -3,7 +3,7 @@ package com.mon.aichat.controller;
 import com.mon.aichat.model.body.ChatBody;
 import com.mon.aichat.model.dto.SseChatDTO;
 import com.mon.aichat.model.result.ResultBody;
-import com.mon.aichat.modules.network.ChatSseEmitter;
+import com.mon.aichat.modules.network.sse.ChatSseEmitter;
 import com.mon.aichat.service.ChatService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,15 +1,17 @@
-package com.mon.aichat.modules.network;
+package com.mon.aichat.modules.network.sse;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.google.gson.Gson;
 import com.mon.aichat.config.Configs;
+import com.mon.aichat.modules.network.OkClient;
+import com.mon.aichat.modules.network.OkResult;
 import okhttp3.*;
 import okhttp3.internal.sse.RealEventSource;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;

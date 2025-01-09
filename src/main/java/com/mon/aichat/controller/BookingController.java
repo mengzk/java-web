@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Author: Meng
  * Date: 2024-07-23
  * Desc: 会议预定管理
+ * 功能描述: 会议室预订及取消，可以通过二维码扫描进行操作
  */
 
 @RestController

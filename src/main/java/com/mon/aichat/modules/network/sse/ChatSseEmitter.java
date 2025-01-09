@@ -1,9 +1,29 @@
-package com.mon.aichat.modules.network;
+package com.mon.aichat.modules.network.sse;
 
 import com.google.gson.Gson;
 import com.mon.aichat.model.dto.SseErrDTO;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+/**
+ * Author: Meng
+ * Date: 2024-08-17
+ * Desc: 服务器推送事件
+ *
+ @PostMapping(path = "/chat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+ public SseEmitter onChat(@RequestBody() ChatBody body, HttpServletResponse res) {
+     ChatSseEmitter sseEmitter = new ChatSseEmitter();
+     String data = service.sse(body.msg);
+     if (data == null) {
+        sseEmitter.error("1011", "数据异常");
+     } else {
+         sseEmitter.sendMsg(SseChatDTO.start(body.id, data, System.currentTimeMillis()));
+         sseEmitter.sendMsg(new SseChatDTO(data, body.id));
+         sseEmitter.sendMsg(SseChatDTO.stop(body.id, data, System.currentTimeMillis()));
+         sseEmitter.complete();
+     }
+     return sseEmitter.getEmitter();
+ }
+ */
 public class ChatSseEmitter {
 
     private SseEmitter emitter;
