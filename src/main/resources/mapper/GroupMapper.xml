@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mon.aichat.mapper.DemoMapper">
+<mapper namespace="com.mon.aichat.mapper.GroupMapper">
     <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
-    <resultMap id="roomMap" type="com.mon.aichat.model.entity.DemoEntity">
+    <resultMap id="roomMap" type="com.mon.aichat.model.entity.GroupEntity">
         <!--主键字段的对应 -->
         <id property="id" javaType="Integer" column="id"/>
         <!--非主键字段的对应-->
@@ -24,7 +24,7 @@
         WHERE userId=#{id};
     </update>
 
-    <select id="onQuery" resultType="com.mon.aichat.model.entity.DemoEntity">
+    <select id="onQuery" resultType="com.mon.aichat.model.entity.GroupEntity">
         SELECT * FROM token where userId=#{id};
     </select>
 

@@ -141,12 +141,6 @@
             <artifactId>itext7-core</artifactId>
             <version>7.2.6</version>
         </dependency>
-        <!--   https://bigmodel.cn/dev/api/devguide/sdk-install     -->
-        <dependency>
-            <groupId>cn.bigmodel.openapi</groupId>
-            <artifactId>oapi-java-sdk</artifactId>
-            <version>release-V4-2.3.0</version>
-        </dependency>
 
     </dependencies>
 

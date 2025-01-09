@@ -5,7 +5,7 @@ package com.mon.aichat.model.entity;
  * Date: 2024-08-19
  * Desc:
  */
-public class Model {
+public class ModelEntity {
     public int id;
     public int did;
     public int mid;

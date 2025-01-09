@@ -1,7 +1,5 @@
 package com.mon.aichat.utils;
 
-import lombok.Getter;
-
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -10,7 +8,6 @@ import java.util.concurrent.Executors;
  * Date: 2024-07-23
  * Desc:
  */
-@Getter
 public class ThreadPool {
     private Executor diskPool;
     private Executor socketPool;

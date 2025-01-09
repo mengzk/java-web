@@ -5,7 +5,6 @@ import com.mon.aichat.model.dto.SseChatDTO;
 import com.mon.aichat.model.result.ResultBody;
 import com.mon.aichat.modules.network.ChatSseEmitter;
 import com.mon.aichat.service.ChatService;
-import com.zhipu.oapi.service.v4.model.ModelData;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,15 +31,15 @@ public class ChatController {
     @PostMapping(path = "/invoke", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter invoke(@RequestBody() ChatBody body, HttpServletResponse res) {
         ChatSseEmitter sseEmitter = new ChatSseEmitter();
-        ModelData data = service.sse(body.msg);
+        String data = service.sse(body.msg);
         if (data == null) {
             sseEmitter.error("1011", "数据异常");
         } else {
-            sseEmitter.sendMsg(SseChatDTO.start(body.id, data.getModel(), data.getCreated()));
+            sseEmitter.sendMsg(SseChatDTO.start(body.id, data, System.currentTimeMillis()));
 
             sseEmitter.sendMsg(new SseChatDTO(data, body.id));
 
-            sseEmitter.sendMsg(SseChatDTO.stop(body.id, data.getModel(), data.getCreated()));
+            sseEmitter.sendMsg(SseChatDTO.stop(body.id, data, System.currentTimeMillis()));
             sseEmitter.complete();
         }
         return sseEmitter.getEmitter();

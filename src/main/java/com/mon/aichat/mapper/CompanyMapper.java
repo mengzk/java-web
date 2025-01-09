@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
  * Date: 2024-07-23
  * Desc:
  */
-public interface DemoMapper {
+public interface CompanyMapper {
 
     int onUpdate(@Param("token") String token);
 
