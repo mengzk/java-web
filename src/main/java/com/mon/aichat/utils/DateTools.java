@@ -45,6 +45,9 @@ public class DateTools {
     public static Date getDate(String format) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
+            if(format == null) {
+                return null;
+            }
             return sdf.parse(format);
         } catch (ParseException e) {
             e.fillInStackTrace();

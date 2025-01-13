@@ -30,11 +30,20 @@
     </select>
 
     <select id="onCount" resultType="int">
-        SELECT count(*) FROM booking where tag=1;
-    </select>
-
-    <select id="onCountByTag" resultType="int">
-        SELECT count(*) FROM booking where tag=1;
+        SELECT count(*) FROM booking where
+        <if test="tag!=null">
+            tag = #{tag}
+        </if>
+        <if test="status!=null">
+            and status = #{status}
+        </if>
+        <if test="start!=null">
+            and start &gt; #{start}
+        </if>
+        <if test="end!=null">
+            and end &lt; #{end}
+        </if>
+        ;
     </select>
 
     <insert id="onInsert">
@@ -46,6 +55,9 @@
         delete from booking where id = #{id};
     </delete>
 
+    <update id="onDelete2">
+        update booking set status = 100 where id = #{id};
+    </update>
 
     <update id="onUpdate">
         update booking
@@ -57,7 +69,7 @@
                 start = #{body.start},
             </if>
             <if test="body.end!=null">
-                end = #{end},
+                end = #{body.end},
             </if>
             <if test="body.time!=null">
                 time = #{body.time},
@@ -69,10 +81,10 @@
                 content = #{body.content},
             </if>
             <if test="body.memo!=null">
-                memo = #{memo}
+                memo = #{body.memo}
             </if>
         </set>
-        where id = #{id};
+        where id = #{body.id};
     </update>
 
 </mapper>

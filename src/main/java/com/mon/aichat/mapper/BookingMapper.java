@@ -18,12 +18,10 @@ public interface BookingMapper {
     int onInsert(@Param("body") BookingBody body);
 
     // 查询预定
-    List<BookingEntity> onQuery(@Param("tag") int tag, @Param("size") int size, @Param("position") int position);
+    List<BookingEntity> onQuery(@Param("tag") int tag, @Param("status") int status, @Param("size") int size, @Param("position") int position);
 
     // 查询预定数量
-    int onCount(@Param("start") Date start, @Param("end") Date end);
-
-    int onCountByTag(@Param("tag") int tag);
+    int onCount(@Param("start") Date start, @Param("end") Date end, @Param("tag") int tag, @Param("status") int status);
 
     // 更新预定
     int onUpdate(@Param("body") BookingBody body);

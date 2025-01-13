@@ -5,10 +5,13 @@ import com.mon.aichat.model.body.BookingBody;
 import com.mon.aichat.model.entity.BookingEntity;
 import com.mon.aichat.model.result.ResultList;
 import com.mon.aichat.modules.exception.AppException;
+import com.mon.aichat.modules.exception.CommonError;
 import com.mon.aichat.modules.exception.CustomException;
 import com.mon.aichat.utils.DateTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Author: Meng
@@ -29,28 +32,29 @@ public class BookingService {
     }
 
     // 查询预约
-    public ResultList<BookingEntity> query(int size, int page) throws AppException {
-        System.out.println("查询设备: ");
+    public List<BookingEntity> queryList(int size, int page, Integer tag, Integer status) throws AppException {
         int start = (page - 1) * size;
-        return null;
+        return mapper.onQuery(tag, status, size, start);
+    }
+
+    public int count(Integer tag, Integer status, String start, String end) throws AppException {
+//        System.out.println("查询设备数量: " + tag + " - " + status + " - " + start + " - " + end);
+        return mapper.onCount(DateTools.getDate(start), DateTools.getDate(end), tag, status);
     }
 
     // 删除预约
     public int delete(Integer id) throws AppException {
-        System.out.println("删除设备: " + id);
         if(id == null) {
-            throw CustomException.create(10011, "设备ID不能为空");
+            throw CustomException.create(CommonError.PARAM_EMPTY);
         }
-        mapper.onDelete(id);
-        return 0;
+        return mapper.onDelete(id);
     }
 
     // 更新预约
     public int update(BookingBody body) throws AppException {
-        System.out.println("更新设备: " + body.toString());
         if(body.id == null) {
-            throw CustomException.create(10011, "设备ID不能为空");
+            throw CustomException.create(CommonError.PARAM_EMPTY);
         }
-        return 0;
+        return mapper.onUpdate(body);
     }
 }
