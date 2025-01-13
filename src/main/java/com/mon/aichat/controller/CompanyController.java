@@ -1,12 +1,11 @@
 package com.mon.aichat.controller;
 
+import com.mon.aichat.model.body.CompanyBody;
 import com.mon.aichat.model.result.ResultBody;
 import com.mon.aichat.service.CompanyService;
-import com.mon.aichat.service.GroupService;
+import com.mon.aichat.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author: Meng
@@ -20,12 +19,10 @@ public class CompanyController {
     @Autowired
     CompanyService service;
 
-    /**
-     * 重置token
-     */
-    @RequestMapping(value = "reset", method = RequestMethod.GET)
-    public ResultBody resetToken() {
-        return ResultBody.success(true);
+    /** 注册公司 */
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultBody create(@RequestBody() CompanyBody body, @RequestHeader("token") String token) throws Exception {
+        body.uid = TokenUtils.getUserId(token);
+        return ResultBody.success(service.add(body));
     }
-
 }

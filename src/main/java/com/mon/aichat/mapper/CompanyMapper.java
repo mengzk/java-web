@@ -1,6 +1,12 @@
 package com.mon.aichat.mapper;
 
+import com.mon.aichat.model.body.BookingBody;
+import com.mon.aichat.model.body.CompanyBody;
+import com.mon.aichat.model.entity.CompanyEntity;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Author: Meng
@@ -9,13 +15,18 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface CompanyMapper {
 
-    int onUpdate(@Param("token") String token);
+    // 注册公司
+    int onInsert(@Param("body") CompanyBody body);
 
-    int onInsert(@Param("token") String token);
+    // 查询公司
+    List<CompanyEntity> onQuery(@Param("uid") int uid, @Param("size") int size, @Param("position") int position);
 
-    String onQuery();
+    // 查询公司数量
+    int onCount(@Param("level") int level);
 
-    int onDelete();
+    // 更新公司
+    int onUpdate(@Param("body") CompanyBody body);
 
-    int onCount();
+    // 删除公司
+    int onDelete(@Param("id") int id);
 }
