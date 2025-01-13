@@ -26,44 +26,49 @@
         <if test="status!=null">
             and status = #{status}
         </if>
-        limit #{start},#{size};
+        limit #{position},#{size};
     </select>
 
-    <select id="onTotalByTime" resultType="int">
+    <select id="onCount" resultType="int">
+        SELECT count(*) FROM booking where tag=1;
+    </select>
+
+    <select id="onCountByTag" resultType="int">
         SELECT count(*) FROM booking where tag=1;
     </select>
 
     <insert id="onInsert">
         insert into booking (tag,start,end,time,theme,content,memo) values
-        (#{tag},#{start},#{end},#{time},#{theme},#{content},#{memo});
+        (#{body.tag},#{body.start},#{body.end},#{body.time},#{body.theme},#{body.content},#{body.memo});
     </insert>
 
     <delete id="onDelete">
         delete from booking where id = #{id};
     </delete>
 
+
     <update id="onUpdate">
         update booking
         <set>
-            <if test="tag!=null">
-                tag = #{tag},
+            <if test="body.tag!=null">
+                tag = #{body.tag},
             </if>
-            <if test="start!=null">
-                start = #{start},
+            <if test="body.start!=null">
+                start = #{body.start},
             </if>
-            <if test="end!=null">
+            <if test="body.end!=null">
                 end = #{end},
             </if>
-            <if test="time!=null">
-                time = #{time},
+            <if test="body.time!=null">
+                time = #{body.time},
             </if>
-            <if test="theme!=null and end!=''">
-                theme = #{theme},
+            <if test="body.theme!=null">
+                theme = #{body.theme},
             </if>
-            <if test="content!=null and end!=''">
-                content = #{content},
+            <if test="body.content!=null">
+                content = #{body.content},
             </if>
-            <if test="memo!=null and end!=''">
+            <if test="body.memo!=null">
                 memo = #{memo}
             </if>
         </set>

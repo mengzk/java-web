@@ -1,9 +1,7 @@
 package com.mon.aichat.mapper;
 
 import com.mon.aichat.model.entity.TokenEntity;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
 
 /**
  * Author: Meng
@@ -11,16 +9,13 @@ import org.apache.ibatis.annotations.Update;
  * Desc: 修改Token
  *
  */
-public interface TokenMapper {
-
-    int exists(@Param("id") int uid);
+public interface TmpMapper {
 
     TokenEntity query(@Param("id") int userId);
 
     int insert(@Param("id") int uid, @Param("value") String token);
 
     int update(@Param("id") int uid, @Param("value") String token);
-    int resets();
 
     int delete(@Param("id") int userId);
 

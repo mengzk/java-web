@@ -1,5 +1,6 @@
 package com.mon.aichat.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,5 +39,16 @@ public class DateTools {
     public static String formatVer() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
         return sdf.format(new Date());
+    }
+
+    // 生成当前时间 yyyy-MM-dd HH:mm:ss
+    public static Date getDate(String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            return sdf.parse(format);
+        } catch (ParseException e) {
+            e.fillInStackTrace();
+            return null;
+        }
     }
 }

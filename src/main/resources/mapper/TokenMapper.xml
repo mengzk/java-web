@@ -32,7 +32,7 @@
         DELETE FROM token WHERE userId=#{id};
     </delete>
 
-    <update id="resetTokens">
+    <update id="resets">
         UPDATE token
         <set>
             value=NULL
@@ -44,18 +44,4 @@
         SELECT COUNT(*) FROM token WHERE userId=#{id};
     </select>
 
-    <update id="upsert">
-        <choose>
-            <when test="exists(id) > 0">
-                UPDATE token
-                <set>
-                    value=#{value}
-                </set>
-                WHERE userId=#{id};
-            </when>
-            <otherwise>
-                INSERT INTO token (userId, value) VALUES (#{id}, #{value});
-            </otherwise>
-        </choose>
-    </update>
 </mapper>

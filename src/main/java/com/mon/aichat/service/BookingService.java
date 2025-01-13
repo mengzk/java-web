@@ -6,6 +6,7 @@ import com.mon.aichat.model.entity.BookingEntity;
 import com.mon.aichat.model.result.ResultList;
 import com.mon.aichat.modules.exception.AppException;
 import com.mon.aichat.modules.exception.CustomException;
+import com.mon.aichat.utils.DateTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,20 +22,15 @@ public class BookingService {
 
     // 添加预约
     public int add(BookingBody body) throws AppException {
-        System.out.println("添加设备: " + body.toString());
+        body.start = DateTools.getDate(body.startDate);
+        body.end = DateTools.getDate(body.endDate);
+        mapper.onInsert(body);
         return 0;
     }
 
     // 查询预约
     public ResultList<BookingEntity> query(int size, int page) throws AppException {
         System.out.println("查询设备: ");
-        int start = (page - 1) * size;
-        return null;
-    }
-
-    // 查询预约
-    public ResultList<BookingEntity> queryOfGroup(int size, int page, int groupId) throws AppException {
-        System.out.println("查询组设备: ");
         int start = (page - 1) * size;
         return null;
     }
