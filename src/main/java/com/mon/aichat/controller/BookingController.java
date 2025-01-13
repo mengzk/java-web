@@ -33,8 +33,7 @@ public class BookingController {
      */
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultBody create(@RequestBody() BookingBody body, @RequestHeader("token") String token) throws Exception {
-        Integer id = TokenUtils.getUserId(token);
-        System.out.println("用户ID: " + id);
+        body.uid = TokenUtils.getUserId(token);
         return ResultBody.success(service.add(body));
     }
 

@@ -11,6 +11,7 @@ public class BookingBody {
     public Integer id;
     public Integer tag = 0; // 0 会议 1 需求 2 接待
     public Integer status; // 0 未开始 1 进行中 2 已结束
+    public Integer uid;
     public Date time = new Date();
     public Date start;
     public Date end;

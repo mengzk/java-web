@@ -32,9 +32,11 @@ public class BookingService {
     }
 
     // 查询预约
-    public List<BookingEntity> queryList(int size, int page, Integer tag, Integer status) throws AppException {
+    public ResultList<BookingEntity> queryList(int size, int page, Integer tag, Integer status) throws AppException {
         int start = (page - 1) * size;
-        return mapper.onQuery(tag, status, size, start);
+        List<BookingEntity> list = mapper.onQuery(tag, status, size, start);
+        int total = count(tag, status, null, null);
+        return ResultList.create(list, total, page, size);
     }
 
     public int count(Integer tag, Integer status, String start, String end) throws AppException {
