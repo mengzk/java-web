@@ -3,6 +3,7 @@ package com.mon.aichat.controller;
 import com.mon.aichat.model.body.BookingBody;
 import com.mon.aichat.model.result.ResultBody;
 import com.mon.aichat.service.BookingService;
+import com.mon.aichat.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,8 @@ public class BookingController {
      */
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultBody create(@RequestBody() BookingBody body, @RequestHeader("token") String token) throws Exception {
+        Integer id = TokenUtils.getUserId(token);
+        System.out.println("用户ID: " + id);
         return ResultBody.success(service.add(body));
     }
 

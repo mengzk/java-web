@@ -14,5 +14,5 @@ public class Configs {
     // WebSocket 配置
     public final static String WS_PATH = "link";
     public final static int Ping_Interval = 1000 * 60; // 心跳间隔
-    public final static int Token_Gap = 1; //
+    public final static int Token_Gap = 72; //
 }

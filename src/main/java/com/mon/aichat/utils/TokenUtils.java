@@ -62,7 +62,7 @@ public class TokenUtils {
         return result;
     }
 
-    public static int getUserId(String token) {
+    public static Integer getUserId(String token) {
         String parsedToken = parse(token);
         if (parsedToken.isEmpty()) {
             return -1;
