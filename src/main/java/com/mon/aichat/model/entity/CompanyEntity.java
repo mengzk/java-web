@@ -9,7 +9,13 @@ import java.util.Date;
  */
 public class CompanyEntity {
     public int id;
+    public int uid;
+    public int level;
     public String name;
-    public String desc;
+    public String logo;
+    public String describe;
+    public String address;
+    public double lat;
+    public double lng;
     public Date createTime;
 }

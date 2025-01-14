@@ -1,9 +1,7 @@
 package com.mon.aichat.service;
 
 import com.mon.aichat.mapper.CompanyMapper;
-import com.mon.aichat.model.body.BookingBody;
 import com.mon.aichat.model.body.CompanyBody;
-import com.mon.aichat.model.entity.BookingEntity;
 import com.mon.aichat.model.entity.CompanyEntity;
 import com.mon.aichat.model.result.ResultList;
 import com.mon.aichat.modules.exception.AppException;
@@ -26,22 +24,22 @@ public class CompanyService {
     CompanyMapper mapper;
 
     // 添加预约
-    public int add(CompanyBody body) throws AppException {
+    public int create(CompanyBody body) throws AppException {
         mapper.onInsert(body);
         return 0;
     }
 
     // 查询预约
-    public ResultList<CompanyEntity> queryList(int size, int page, int level, int uid) throws AppException {
+    public ResultList<CompanyEntity> queryList(int size, int page, int level, String key) throws AppException {
         int start = (page - 1) * size;
-        List<CompanyEntity> list = mapper.onQuery(uid, size, start);
-        int total = count(level,uid);
+        List<CompanyEntity> list = mapper.onQuery(size, start, level, key);
+        int total = count(level, key);
         return ResultList.create(list, total, page, size);
     }
 
-    public int count(Integer level, Integer uid) throws AppException {
-//        System.out.println("查询设备数量: " + tag + " - " + status + " - " + start + " - " + end);
-        return mapper.onCount(level);
+    public int count(Integer level, String key) throws AppException {
+//        System.out.println("查询: " + tag + " - " + status + " - " + start + " - " + end);
+        return mapper.onCount(level, key);
     }
 
     // 删除预约
