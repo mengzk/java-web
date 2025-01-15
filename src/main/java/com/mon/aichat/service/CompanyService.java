@@ -25,12 +25,13 @@ public class CompanyService {
 
     // 添加预约
     public int create(CompanyBody body) throws AppException {
+//        System.out.println("添加预约: " + body);
         mapper.onInsert(body);
         return 0;
     }
 
     // 查询预约
-    public ResultList<CompanyEntity> queryList(int size, int page, int level, String key) throws AppException {
+    public ResultList<CompanyEntity> queryList(int size, int page, Integer level, String key) throws AppException {
         int start = (page - 1) * size;
         List<CompanyEntity> list = mapper.onQuery(size, start, level, key);
         int total = count(level, key);

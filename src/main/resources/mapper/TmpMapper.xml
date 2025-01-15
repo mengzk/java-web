@@ -15,6 +15,7 @@
     <!--        <result property="createDate" javaType="Date" column="create_date"/>-->
     <!--    </resultMap>-->
 
+<!--  缓存配置  -->
     <!--    <cache/>-->
 
     <insert id="insert">
@@ -38,7 +39,7 @@
     </select>
 
     <!--  可以使用<if>和<choose>元素在SQL语句中实现条件逻辑 -->
-    <select id="selectUsers">
+    <select id="selectTest">
         SELECT * FROM test WHERE 1=1
         <choose>
 <!--   if    -->
@@ -56,7 +57,7 @@
     </select>
 
 <!--  使用if和else而不使用WHERE 1=1，可以使用<where>元素。<where>元素自动处理where关键字的位置，并删除任何前导and或or条件  -->
-    <select id="selectUsers" resultType="com.mon.aichat.model.entity.UserEntity">
+    <select id="selectTest3">
         SELECT * FROM users
         <where>
             <if test="name != null">
@@ -66,6 +67,19 @@
                 AND age = #{age}
             </if>
         </where>
+    </select>
+
+    <select id="onQuery3">
+        SELECT * FROM company
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="level != null">
+                level = #{level}
+            </if>
+            <if test="key != null">
+                AND name LIKE CONCAT('%', #{key}, '%')
+            </if>
+        </trim>
+        LIMIT #{position}, #{size};
     </select>
 
 </mapper>

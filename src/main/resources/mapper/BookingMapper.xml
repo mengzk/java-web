@@ -51,7 +51,7 @@
 
     <insert id="onInsert">
         insert into booking (tag,start,end,time,theme,content,memo) values
-        (#{body.tag},#{body.start},#{body.end},#{body.time},#{body.theme},#{body.content},#{body.memo});
+        (#{body.tag},#{body.start},#{body.end},NOW(),#{body.theme},#{body.content},#{body.memo});
     </insert>
 
     <delete id="onDelete">

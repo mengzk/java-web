@@ -44,7 +44,7 @@ public class CompanyController {
      */
     @RequestMapping(value = "count", method = RequestMethod.GET)
     public ResultBody count(@RequestParam(value = "level", defaultValue = "0", required = false) Integer level,
-                            @RequestParam(value = "key", defaultValue = "", required = false) String key) throws Exception {
+                            @RequestParam(value = "key", required = false) String key) throws Exception {
         return ResultBody.success(service.count(level, key));
     }
 

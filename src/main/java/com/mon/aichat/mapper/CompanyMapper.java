@@ -16,7 +16,7 @@ public interface CompanyMapper {
     int onInsert(@Param("body") CompanyBody body);
 
     // 查询公司
-    List<CompanyEntity> onQuery(@Param("size") int size, @Param("position") int position, @Param("level") int level, @Param("key") String key);
+    List<CompanyEntity> onQuery(@Param("size") int size, @Param("position") int position, @Param("level") Integer level, @Param("key") String key);
 
     // 查询公司数量
     int onCount(@Param("level") int level, @Param("key") String key);
