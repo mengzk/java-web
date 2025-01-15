@@ -1,4 +1,4 @@
-package com.mon.aichat.model.entity;
+package com.mon.aichat.model.dto;
 
 import java.util.List;
 

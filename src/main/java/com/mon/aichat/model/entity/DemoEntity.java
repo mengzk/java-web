@@ -9,7 +9,10 @@ import java.util.Date;
  */
 public class DemoEntity {
     public int id;
+    public int uid;
+    public int level;
     public String name;
-    public String desc;
+    public String logo;
+    public String describe;
     public Date createTime;
 }

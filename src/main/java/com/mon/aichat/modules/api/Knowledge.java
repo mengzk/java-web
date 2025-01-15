@@ -1,8 +1,7 @@
 package com.mon.aichat.modules.api;
 
 import com.mon.aichat.model.body.KnowledgeBody;
-import com.mon.aichat.model.entity.Capacity;
-import com.mon.aichat.model.entity.ListEntity;
+import com.mon.aichat.model.dto.ListEntity;
 import com.mon.aichat.modules.network.ChatRequest;
 import com.mon.aichat.modules.network.OkResult;
 import com.mon.aichat.utils.File3;
@@ -13,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-
-import static com.mon.aichat.modules.network.OkClient.MEDIA_PNG;
 
 /**
  * Author: Meng
@@ -98,7 +95,7 @@ public class Knowledge {
     public OkResult capacity() {
         OkResult<String> res = ChatRequest.get("/knowledge/capacity");
         if (res.code == 0) {
-            return OkResult.ok(ChatRequest.jsonToBean(res.data, Capacity.class));
+//            return OkResult.ok(ChatRequest.jsonToBean(res.data, Capacity.class));
         }
         return res;
     }

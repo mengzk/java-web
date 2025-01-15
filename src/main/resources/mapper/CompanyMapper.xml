@@ -17,7 +17,7 @@
     </insert>
 
     <update id="onUpdate">
-        UPDATE token
+        UPDATE company
         <set>
             value=#{value}
         </set>
@@ -25,14 +25,14 @@
     </update>
 
     <select id="onQuery" resultType="com.mon.aichat.model.entity.CompanyEntity">
-        SELECT * FROM token where userId=#{id};
+        SELECT * FROM company where userId=#{id};
     </select>
 
     <select id="onCount" resultType="int">
-        SELECT count(*) FROM token;
+        SELECT count(*) FROM company;
     </select>
 
     <delete id="onDelete">
-        DELETE FROM token WHERE userId=#{id};
+        DELETE FROM company WHERE userId=#{id};
     </delete>
 </mapper>

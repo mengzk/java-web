@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class BookingEntity {
     public int id;
+    public int uid;
     public int tag;
     public int status;
     public Date time;

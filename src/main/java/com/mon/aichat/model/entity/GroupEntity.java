@@ -9,7 +9,9 @@ import java.util.Date;
  */
 public class GroupEntity {
     public int id;
+    public int uid;
+    public int level;
     public String name;
-    public String desc;
-    public Date createTime;
+    public String describe;
+    public long createTime;
 }
