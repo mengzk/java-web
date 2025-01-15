@@ -13,6 +13,6 @@ public class DemoEntity {
     public int level;
     public String name;
     public String logo;
-    public String describe;
+    public String description;
     public Date createTime;
 }

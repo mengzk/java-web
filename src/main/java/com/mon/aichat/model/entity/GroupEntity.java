@@ -12,6 +12,6 @@ public class GroupEntity {
     public int uid;
     public int level;
     public String name;
-    public String describe;
+    public String description;
     public long createTime;
 }
