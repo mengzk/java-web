@@ -13,23 +13,45 @@
     <cache/>
 
     <insert id="onInsert">
-        INSERT INTO company (uid, name, memo) VALUES (#{id},#{value});
+        INSERT INTO company (uid, level, logo, name, describe, address, lat, lng, create_date)
+        VALUES
+        (#{body.uid},#{body.level},#{body.logo},#{body.name},#{body.describe},#{body.address},#{body.lat},#{body.lng},NOW());
     </insert>
 
     <update id="onUpdate">
         UPDATE company
         <set>
-            value=#{value}
+            <if test="body.value != null">value=#{body.value},</if>
+            <if test="body.level != null">level=#{body.level},</if>
+            <if test="body.logo != null">logo=#{body.logo},</if>
+            <if test="body.name != null">name=#{body.name},</if>
+            <if test="body.describe != null">describe=#{body.describe},</if>
+            <if test="body.address != null">address=#{body.address},</if>
+            <if test="body.lat != null">lat=#{body.lat},</if>
+            <if test="body.lng != null">lng=#{body.lng},</if>
+            <if test="body.uid != null">uid=#{body.uid},</if>
         </set>
-        WHERE userId=#{id};
+        WHERE id=#{body.id};
     </update>
 
     <select id="onQuery" resultType="com.mon.aichat.model.entity.CompanyEntity">
-        SELECT * FROM company where userId=#{id};
+        SELECT * FROM company
+        <where>
+            <if test="key!=null">
+                name like concat('%',#{key},'%')
+            </if>
+            <if test="level!=null">
+                and level = #{level}
+            </if>
+        </where>
+        limit #{position},#{size};
     </select>
 
     <select id="onCount" resultType="int">
-        SELECT count(*) FROM company;
+        SELECT count(*) FROM company
+        <if test="level!=null">
+            where level = #{level}
+        </if>
     </select>
 
     <delete id="onDelete">

@@ -1,5 +1,6 @@
 package com.mon.aichat.mapper;
 
+import com.mon.aichat.model.entity.CompanyEntity;
 import com.mon.aichat.model.entity.TokenEntity;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface CommentMapper {
 
-    TokenEntity onQuery(@Param("id") int id);
+    CompanyEntity onQuery(@Param("id") int id);
 
     int onCount(@Param("id") int id);
 

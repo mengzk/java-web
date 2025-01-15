@@ -3,7 +3,6 @@ package com.mon.aichat.mapper;
 import com.mon.aichat.model.body.CompanyBody;
 import com.mon.aichat.model.entity.CompanyEntity;
 import org.apache.ibatis.annotations.Param;
-import java.util.Date;
 import java.util.List;
 
 /**

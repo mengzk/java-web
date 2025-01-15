@@ -19,31 +19,34 @@
     </resultMap>
 
     <select id="onQuery" resultMap="bookMap">
-        SELECT * FROM booking where
-        <if test="tag!=null">
-            tag = #{tag}
-        </if>
-        <if test="status!=null">
-            and status = #{status}
-        </if>
+        SELECT * FROM booking
+        <where>
+            <if test="tag!=null">
+                tag = #{tag}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+        </where>
         limit #{position},#{size};
     </select>
 
     <select id="onCount" resultType="int">
-        SELECT count(*) FROM booking where
-        <if test="tag!=null">
-            tag = #{tag}
-        </if>
-        <if test="status!=null">
-            and status = #{status}
-        </if>
-        <if test="start!=null">
-            and start &gt; #{start}
-        </if>
-        <if test="end!=null">
-            and end &lt; #{end}
-        </if>
-        ;
+        SELECT count(*) FROM booking
+        <where>
+            <if test="tag!=null">
+                tag = #{tag}
+            </if>
+            <if test="status!=null">
+                and status = #{status}
+            </if>
+            <if test="start!=null">
+                and start &gt; #{start}
+            </if>
+            <if test="end!=null">
+                and end &lt; #{end}
+            </if>
+        </where>
     </select>
 
     <insert id="onInsert">

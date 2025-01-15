@@ -25,7 +25,12 @@
     </update>
 
     <select id="onQuery" resultType="com.mon.aichat.model.entity.DemoEntity">
-        SELECT * FROM token where userId=#{id};
+        SELECT * FROM token
+        <where>
+            <if test="id!=null">
+                id = #{id}
+            </if>
+        </where>
     </select>
 
     <delete id="onDelete">

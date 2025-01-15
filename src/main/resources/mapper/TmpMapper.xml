@@ -10,31 +10,62 @@
     <!--    &apos; for ' (single quote)-->
 
     <!-- 配置 查询结果的列明和实体类的属性名的对应关系; -->
-<!--    <resultMap id="roomMap" type="com.mon.aichat.model.entity.TokenEntity">-->
-<!--        <id property="id" javaType="Integer" column="id"/>-->
-<!--        <result property="createDate" javaType="Date" column="create_date"/>-->
-<!--    </resultMap>-->
+    <!--    <resultMap id="roomMap" type="com.mon.aichat.model.entity.TokenEntity">-->
+    <!--        <id property="id" javaType="Integer" column="id"/>-->
+    <!--        <result property="createDate" javaType="Date" column="create_date"/>-->
+    <!--    </resultMap>-->
 
-<!--    <cache/>-->
+    <!--    <cache/>-->
 
     <insert id="insert">
-        INSERT INTO token (userId, value) VALUES (#{id},#{value});
+        INSERT INTO test (userId, value) VALUES (#{id},#{value});
     </insert>
 
     <update id="update">
-        UPDATE token
+        UPDATE test
         <set>
             value=#{value}
         </set>
         WHERE userId=#{id};
     </update>
 
-    <!--  添加缓存  -->
-    <select id="query" resultType="com.mon.aichat.model.entity.TokenEntity">
-        SELECT * FROM token where userId=#{id};
+    <delete id="delete">
+        DELETE FROM test WHERE userId=#{id};
+    </delete>
+
+    <select id="query">
+        SELECT * FROM test where userId=#{id};
     </select>
 
-    <delete id="delete">
-        DELETE FROM token WHERE userId=#{id};
-    </delete>
+    <!--  可以使用<if>和<choose>元素在SQL语句中实现条件逻辑 -->
+    <select id="selectUsers">
+        SELECT * FROM test WHERE 1=1
+        <choose>
+<!--   if    -->
+            <when test="name != null">
+                AND name = #{name}
+            </when>
+            <when test="age != null">
+                AND age = #{age}
+            </when>
+<!--   else   -->
+            <otherwise>
+                AND status = 'active'
+            </otherwise>
+        </choose>
+    </select>
+
+<!--  使用if和else而不使用WHERE 1=1，可以使用<where>元素。<where>元素自动处理where关键字的位置，并删除任何前导and或or条件  -->
+    <select id="selectUsers" resultType="com.mon.aichat.model.entity.UserEntity">
+        SELECT * FROM users
+        <where>
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="age != null">
+                AND age = #{age}
+            </if>
+        </where>
+    </select>
+
 </mapper>
