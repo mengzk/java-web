@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 /**
  * Author: Meng
  * Date: 2024-08-17
- * Desc: 会议室服务
+ * Desc: 房间服务
  */
 @Service
 public class RoomService {
@@ -40,16 +40,14 @@ public class RoomService {
 
     // 查询会议室
     public ResultList<RoomEntity> query(int size, int page) throws AppException {
-        System.out.println("查询设备: ");
         int start = (page - 1) * size;
         return ResultList.create(mapper.onQuery(start, size), mapper.onCount(), page, size);
     }
 
     // 删除会议室
     public int delete(Integer id) throws AppException {
-        System.out.println("删除设备: " + id);
         if(id == null) {
-            throw CustomException.create(10011, "设备ID不能为空");
+            throw CustomException.create(CommonError.PARAM_EMPTY);
         }
         mapper.onDelete(id);
         return 0;
@@ -57,9 +55,8 @@ public class RoomService {
 
     // 更新会议室
     public int update(RoomBody body) throws AppException {
-        System.out.println("更新设备: " + body.toString());
         if(body.id == null) {
-            throw CustomException.create(10011, "设备ID不能为空");
+            throw CustomException.create(CommonError.PARAM_EMPTY);
         }
         mapper.onUpdate(body);
         return 0;
