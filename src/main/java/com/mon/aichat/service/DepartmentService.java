@@ -2,14 +2,13 @@ package com.mon.aichat.service;
 
 import com.mon.aichat.mapper.DepartmentMapper;
 import com.mon.aichat.model.body.DepartmentBody;
-import com.mon.aichat.model.body.StaffBody;
+import com.mon.aichat.model.body.EmployeeBody;
 import com.mon.aichat.modules.exception.AppException;
 import com.mon.aichat.modules.exception.CommonError;
 import com.mon.aichat.modules.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,27 +23,17 @@ public class DepartmentService {
 
     //
     public int add(DepartmentBody body) throws AppException {
-        return 0;
+        return mapper.onInsert(body);
     }
 
     //
-    public List<String> query() throws AppException {
-        return new ArrayList<>();
-    }
-
-    //
-    public int queryStaff(Integer dId) throws AppException {
-        return 0;
-    }
-
-    //
-    public int addStaff(StaffBody dId) throws AppException {
-        return 0;
+    public List<String> query(Integer cId) throws AppException {
+        return mapper.onQuery(cId);
     }
 
     //
     public int count(Integer cId) throws AppException {
-        return 0;
+        return mapper.onCount(cId);
     }
 
     //
@@ -52,7 +41,7 @@ public class DepartmentService {
         if(id == null) {
             throw CustomException.create(CommonError.PARAM_EMPTY);
         }
-        return 0;
+        return mapper.onDelete(id);
     }
 
     //
@@ -60,6 +49,25 @@ public class DepartmentService {
         if(body.id == null) {
             throw CustomException.create(CommonError.PARAM_EMPTY);
         }
+        return mapper.onUpdate(body);
+    }
+
+
+    //
+    public int queryStaff(Integer cId, Integer dId) throws AppException {
+        return 0;
+    }
+
+    //
+    public int addStaff(EmployeeBody dId) throws AppException {
+        return 0;
+    }
+
+    public int removeStaff(EmployeeBody dId) throws AppException {
+        return 0;
+    }
+
+    public int moveStaff(EmployeeBody body) throws AppException {
         return 0;
     }
 }

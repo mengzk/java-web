@@ -1,7 +1,7 @@
 package com.mon.aichat.controller;
 
 import com.mon.aichat.model.body.DepartmentBody;
-import com.mon.aichat.model.body.StaffBody;
+import com.mon.aichat.model.body.EmployeeBody;
 import com.mon.aichat.model.result.ResultBody;
 import com.mon.aichat.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class DepartmentController {
      * 查询
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResultBody query() throws Exception {
-        return ResultBody.success(service.query());
+    public ResultBody query(@RequestParam("cId") Integer cId) throws Exception {
+        return ResultBody.success(service.query(cId));
     }
 
     /**
@@ -44,17 +44,34 @@ public class DepartmentController {
     /**
      * 查询
      */
-    @RequestMapping(value = "staff", method = RequestMethod.GET)
-    public ResultBody queryStaff(@RequestParam("dId") Integer dId) throws Exception {
-        return ResultBody.success(service.queryStaff(dId));
+    @RequestMapping(value = "queryEmployee", method = RequestMethod.GET)
+    public ResultBody queryEmployee(@RequestParam(value = "cId", required = false) Integer cId,
+                                 @RequestParam(value = "dId", required = false) Integer dId) throws Exception {
+        return ResultBody.success(service.queryStaff(cId,dId));
     }
 
     /**
-     * 查询
+     * 添加
      */
-    @RequestMapping(value = "addStaff", method = RequestMethod.POST)
-    public ResultBody addStaff(@RequestBody StaffBody body) throws Exception {
+    @RequestMapping(value = "addEmployee", method = RequestMethod.POST)
+    public ResultBody addEmployee(@RequestBody EmployeeBody body) throws Exception {
         return ResultBody.success(service.addStaff(body));
+    }
+
+    /**
+     * 移除
+     */
+    @RequestMapping(value = "removeEmployee", method = RequestMethod.POST)
+    public ResultBody removeEmployee(@RequestBody EmployeeBody body) throws Exception {
+        return ResultBody.success(service.removeStaff(body));
+    }
+
+    /**
+     * 移动到其他部门
+     */
+    @RequestMapping(value = "moveEmployee", method = RequestMethod.POST)
+    public ResultBody moveEmployee(@RequestBody EmployeeBody body) throws Exception {
+        return ResultBody.success(service.moveStaff(body));
     }
 
     /**

@@ -1,6 +1,9 @@
 package com.mon.aichat.mapper;
 
+import com.mon.aichat.model.body.DepartmentBody;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Author: Meng
@@ -9,13 +12,13 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface DepartmentMapper {
 
-    int onUpdate(@Param("token") String token);
+    int onUpdate(@Param("body") DepartmentBody body);
 
-    int onInsert(@Param("token") String token);
+    int onInsert(@Param("body") DepartmentBody body);
 
-    String onQuery();
+    List<String> onQuery(@Param("cId") int cId);
 
-    int onDelete();
+    int onDelete(@Param("id") int id);
 
-    int onCount();
+    int onCount(@Param("cId") int cId);
 }

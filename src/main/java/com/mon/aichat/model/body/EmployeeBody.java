@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 2025-01-15
  * Desc:
  */
-public class StaffBody {
+public class EmployeeBody {
     public Integer departmentId;
     public Integer companyId;
     public List<Integer> ids;
